@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/principal.css" />
+        <link rel="stylesheet" href="../css/contact.css" />
         <link rel="icon" type="image/png" href="../img/logo.png">
         <title>SecNews</title>
     </head>
@@ -12,46 +13,48 @@
             <h1> SecNews </h1>
         </header>
 
-        <h2> Our informations  </h2>
-
         <ul>
             <li><a href="accueil.html" id="accueil">Home</a></li>
             <li><a href="contact.html" id="contact">Contact us!</a></li>
             <li><a href="help.html" id="help">Need help?</a></li>
         </ul>
 
-        <form class="search-container" onsubmit = "search(); return false;">
+        <form id="search-container" onsubmit = "search(); return false;">
             <div>
                 <form>
-                    <input type="text" id="search-bar" placeholder="search"/>
-                    <input class="valider" type="submit" value="submit"/>
+                    <input id="search-bar" type="text"  placeholder="Search"/>
+                    <input id="search_button" type="submit" value="submit"/>
                 </form>
+
             </div>
         </form>
 
-        <section class="contact">
+        <h2> Our informations  </h2>
+        <div id="contact-container">
 
-            <ul class="maxime">
-                <li><p>Maxime BOURY</p></li>
-                <li><p>Mail : boury.e1702968@etud.univ-ubs.fr</p></li>
-            </ul>
+            <p class="contact-info">
+                Maxime BOURY<br />
+                Mail : boury.e1702968@etud.univ-ubs.fr
+            </p>
 
-            <ul class="kieran">
-                <li><p>Kieran LE PENDEVEN</p></li>
-                <li><p>Mail : le-pendeven.e1604602@etud.univ-ubs.fr</p></li>
-            </ul>
+            <p class="contact-info">
+                Kieran LE PENDEVEN<br />
+                Mail : le-pendeven.e1604602@etud.univ-ubs.fr
+            </p>
 
-            <ul class="nicolas">
-                <li><p>Nicolas FONNIER</p></li>
-                <li><p>Mail : fonnier.e1602396@etud.univ-ubs.fr</p></li>
-            </ul>
+            <p class="contact-info">
+                Nicolas FONNIER<br />
+                Mail : fonnier.e1602396@etud.univ-ubs.fr
+            </p>
 
-            <ul class="anais">
-                <li><p>Anaïs BALZÉ</p></li>
-                <li><p>Mail : balze.e1600622@etud.univ-ubs.fr</p></li>
-            </ul>
+            <p class="contact-info">
+                Anaïs BALZÉ<br />
+                Mail : balze.e1600622@etud.univ-ubs.fr
+            </p>
+        </div>
 
-        </section>
-
+        <footer>
+            <p class="footer">© 2019 Kieran Le Pendeven, Maxime Boury, Nicolas Fonnier, Anaïs Balzé</p>
+        </footer>
     </body>
 </html>
