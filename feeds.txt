@@ -1,0 +1,2 @@
+https://feeds.feedburner.com/TheHackersNews?format=xml
+https://blog.yeswehack.com/feed/
