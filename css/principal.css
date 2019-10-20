@@ -1,0 +1,364 @@
+/* Fichier CSS pour l'application SecNews */
+
+/* intégration nouvelle police */
+@font-face {
+    font-family: 'NotoMono';
+    src: url('../fonts/NotoMono-Regular.ttf');
+}
+
+
+/* * = modifications sur la page entière */
+*
+{
+    font-family: 'NotoMono', Arial, serif;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+/* en tête comprenant le titre + logo */
+header
+{
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    box-shadow: 0 4px 10px #431416;
+
+}
+/* modifications concernant le contenu de la balise body */
+body
+{
+    background-color: #DECFCF;
+    overflow: hidden;
+}
+
+
+/* réglages taille et couleur du titre principal */
+h1
+{
+    font-size: 60px;
+    color : #8E3538;
+   /* position: relative;*/
+    display: inline-block;
+
+}
+
+/* réglages taille de l'image logo */
+#logo
+{
+    width: 80px;
+    height: 80px;
+   /* position: relative;*/
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 7px;
+
+}
+
+h3
+{
+    margin-top: 20px;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 70px;
+    margin-left: 10px;
+}
+
+#phrase_accroche
+{
+    background-image: url("../img/fond.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: 0 -10px 10px inset;
+    display: flex;
+    flex-direction: column;
+}
+
+#phrase_accroche h3
+{
+    position: relative;
+    margin-top: .1em;
+    margin-left: 6%;
+}
+
+#bande
+{
+    position: absolute;
+    top: 10px;
+    right: 300px;
+}
+
+/* bande accueil/contact/aide */
+.lien a
+{
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    color: #544B4B;
+    padding: 30px 20px;
+}
+
+a[id="contact"]
+{
+    border-right: 1px solid #431416;
+    border-left: 1px solid #431416;
+    margin-inside: 1px;
+}
+
+a:hover
+{
+    background-color: #EBCDCE;
+}
+
+a:active
+{
+    background-color: #B26C6F;
+}
+
+.lien
+{
+    float: left;
+    /*margin-left: 20px;*/
+    list-style-type: none;
+}
+
+#search-container
+{
+    background: #D5898C;
+    border: 4px solid #8E3538;
+    padding: 20px 10px;
+    width: 250px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
+
+#search-container input[type="text"]
+{
+    background: url("../img/search-dark.png") no-repeat 10px 6px #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff;
+    font: bold 12px Arial,Helvetica,Sans-serif;
+    color: #D5898C;
+    width: 55%;
+    padding: 8px 15px 8px 30px;
+}
+
+input::placeholder
+{
+    color: #D5898C;
+}
+
+input:focus::placeholder
+{
+    color: #DECFCF;
+}
+
+#search-bar
+{
+    display: inline-block;
+    vertical-align: bottom;
+    height: 10%;
+
+
+}
+
+#search_button
+{
+    background: #7D2A2E;
+    border-width: 0;
+    padding: 9px 0;
+    width: 20%;
+    cursor: pointer;
+    font: bold 12px Arial, Helvetica;
+    color: #fff;
+    text-shadow: 0 1px 0 #431416;
+    display: inline-block;
+}
+
+#search_button:hover
+{
+    background: #B26C6F;
+}
+
+
+
+footer
+{
+    background-color: #8E3538;
+    color: white;
+    display: inline-block;
+    padding: 7px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 10px;
+    box-shadow: -5px -4px 6px #330C0E;
+}
+
+
+/*modification apportées à tout le contenu de la balise div avec l'id menuToggle*/
+#menuToggle
+{
+    display: block;
+    position: relative;
+    top: 50px;
+    left: 50px;
+
+    z-index: 1;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle input
+{
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+
+    cursor: pointer;
+
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+
+    -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #232323;
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0;
+
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+    opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+    transform-origin: 0 0;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+    transform-origin: 0 100%;
+}
+
+/*
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+    position: absolute;
+    width: 200px;
+    margin: -75px 0 0 -50px;
+    padding: 50px;
+    padding-top: 100px;
+    color: #B26C6F;
+    box-shadow: 5px 5px 10px #7D2A2E;
+
+    background: white;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+
+    transform-origin: 0 0;
+    transform: translate(-110%, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu div
+{
+    padding: 10px 0;
+    font-size: 25px;
+}
+
+#menu input
+{
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    margin-right: 5%;
+    position: relative;
+    float: left;
+    vertical-align: bottom;
+    top: 2px;
+
+}
+
+#menu label:hover
+{
+    color: #431416;
+    cursor: pointer;
+}
+
+#menu input:checked + label
+{
+    color: #431416;
+}
+
+
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ fieldset
+{
+    transform: none;
+}

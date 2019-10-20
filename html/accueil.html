@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/principal.css" />
+        <link rel="stylesheet" href="../css/accueil.css" />
+        <link rel="icon" type="image/png" href="../img/logo.png"/>
+        <title>SecNews</title>
+    </head>
+    <body>
+        <header>
+            <img id="logo" src="../img/logo.png" alt="Sec'News logo"/>
+            <h1> SecNews </h1>
+        </header>
+
+        <ul id="bande">
+            <li class="lien"><a href="accueil.html" id="accueil">Home</a></li>
+            <li class="lien"><a href="contact.html" id="contact">Contact us!</a></li>
+            <li class="lien"><a href="help.html" id="help">Need help?</a></li>
+        </ul>
+
+        <section id="phrase_accroche">
+            <nav role="navigation">
+                <div id="menuToggle">
+                    <input id="burger" type="checkbox" />
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                    <fieldset id="menu">
+                        <div id="cb1">
+                            <input type="checkbox" id="cat1" >
+                            <label for="cat1" aria-describedby="label">catégorie1</label>
+                        </div>
+                        <div id="cb2">
+                            <input type="checkbox" id="cat2" >
+                            <label for="cat2" aria-describedby="label">catégorie2</label>
+                        </div>
+                        <div id="cb3">
+                            <input type="checkbox" id="cat3" >
+                            <label for="cat3" aria-describedby="label">catégorie3</label>
+                        </div>
+                        <div id="cb4">
+                            <input type="checkbox" id="cat4" >
+                            <label for="cat4" aria-describedby="label">catégorie4</label>
+                        </div>
+                        <div id="cb5">
+                            <input type="checkbox" id="cat5" >
+                            <label for="cat5" aria-describedby="label">catégorie5</label>
+                        </div>
+                        <div id="cb6">
+                            <input type="checkbox" id="cat6" >
+                            <label for="cat6" aria-describedby="label">catégorie6</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </nav>
+            <h3> For all your cybersecurity news!</h3>
+        </section>
+
+        <form id="search-container" onsubmit = "search(); return false;">
+            <div>
+                <form>
+                    <input id="search-bar" type="text"  placeholder="Search"/>
+                    <input id="search_button" type="submit" value="submit"/>
+                </form>
+
+            </div>
+        </form>
+
+        <!-- CODE GOES HERE -->
+        <div id="main-content">
+
+
+
+        </div>
+
+        <footer>
+            <p class="footer">© 2019 Kieran Le Pendeven, Maxime Boury, Nicolas Fonnier, Anaïs Balzé</p>
+        </footer>
+
+    </body>
+</html>

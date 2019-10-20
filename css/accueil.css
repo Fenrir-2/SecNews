@@ -1,0 +1,10 @@
+/*feuille css qui concerne seulement la page accueil
+
+/*modifications concernant la balise body*/
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'NotoMono', sans-serif;
+    overflow: hidden;
+}

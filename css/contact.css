@@ -1,0 +1,23 @@
+h2
+{
+    display: inline-block;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-left: 15px;
+    padding-right: 500px;
+    color: #7D2A2E;
+    text-transform: uppercase;
+    border-bottom: 2px solid #431416;
+}
+
+#contact-container{
+    position: center;
+    margin: 20px;
+}
+
+.contact-info
+{
+    display: list-item;
+    margin-top: 1%;
+    margin-left: 20px;
+}
