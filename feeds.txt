@@ -1,2 +1,14 @@
 https://feeds.feedburner.com/TheHackersNews?format=xml
 https://blog.yeswehack.com/feed/
+https://www.cert.ssi.gouv.fr/alerte/feed/
+https://fumik0.com/feed/
+https://security-soup.net/feed/
+https://inshallhack.org/feeds/all.atom.xml
+https://www.nolimitsecu.fr/feed/podcast/
+https://rssbox.herokuapp.com/twitter/4436776155/hack2g2?include_rts=0&exclude_replies=1
+https://www.zataz.com/rss/zataz-news.rss
+http://undernews.digidip.net/visit?url=http%3A%2F%2Ffeeds.feedburner.com%2Fundernews%2FoCmA&currurl=https%3A%2F%2Fwww.undernews.fr%2F
+https://cyberguerre.numerama.com/feed/
+https://blog.malwaremustdie.org/feeds/posts/default
+https://www.reddit.com/r/netsec/.rss
+https://www.reddit.com/r/InfoSecNews/.rss
