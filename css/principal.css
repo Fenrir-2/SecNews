@@ -23,10 +23,10 @@ header
     background-color: transparent;
     display: inline-block;
     position: absolute;
-    z-index: 1000;
+    z-index: 1;
     padding-top: 20px;
     padding-bottom: 10px;
-    width: 100%;
+    margin-left: 40%;
     text-align: center;
     text-shadow: -5px -1px 5px #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 
