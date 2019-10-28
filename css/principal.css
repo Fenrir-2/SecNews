@@ -17,13 +17,13 @@
 
 }
 
-/* en tête comprenant le titre + logo */
+/* en tête comprenant le titre + logo -----------------------------------------------------------------------------------------------------------------------------------*/
 header
 {
     background-color: transparent;
     display: inline-block;
     position: absolute;
-    z-index: 1;
+    z-index: 1000;
     padding-top: 20px;
     padding-bottom: 10px;
     margin-left: 40%;
@@ -31,7 +31,7 @@ header
     text-shadow: -5px -1px 5px #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 
 }
-/* modifications concernant le contenu de la balise body */
+/* modifications concernant le contenu de la balise body ----------------------------------------------------------------------------------------------------------------*/
 body
 {
     background-color: #DECFCF;
@@ -41,7 +41,7 @@ body
 }
 
 
-/* réglages taille et couleur du titre principal */
+/* réglages taille et couleur du titre principal ------------------------------------------------------------------------------------------------------------------------*/
 h1
 {
     font-size: 60px;
@@ -51,7 +51,7 @@ h1
 
 }
 
-/* réglages taille de l'image logo */
+/* réglages taille de l'image logo --------------------------------------------------------------------------------------------------------------------------------------*/
 #logo
 {
     width: 80px;
@@ -63,6 +63,7 @@ h1
 
 }
 
+/*réglages en tête de page ---------------------------------------------------------------------------------------------------------------------------------------------*/
 h3
 {
     margin-top: 0;
@@ -73,6 +74,7 @@ h3
     display: inline-block;
 }
 
+/* image de fond */
 #menu_navigation
 {
     background-image: url("../img/fond.png");
@@ -80,7 +82,7 @@ h3
     background-repeat: no-repeat;
     box-shadow: 0 -10px 10px inset;
     display: block;
-    position: sticky;
+
 
 
 }
@@ -92,7 +94,7 @@ h3
     margin-left: 6%;
 }
 
-
+/* barre de recherche */
 #search-container
 {
     background: #D5898C;
@@ -155,7 +157,7 @@ input:focus::placeholder
 }
 
 
-
+/* pied de page (copiright) ------------------------------------------------------------------------------------------------------------------------------------------*/
 footer
 {
     background-color: #8E3538;
@@ -170,8 +172,8 @@ footer
     box-shadow: -5px -4px 6px #330C0E;
 }
 
-
-/*modification apportées à tout le contenu de la balise div avec l'id menuToggle*/
+/*menu burger ---------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*menuToggle = id correspondant a l'icone cliquable pour dérouler le menu burger*/
 #menuToggle
 {
     display: block;
@@ -185,6 +187,7 @@ footer
     user-select: none;
 }
 
+/*modifications sur la checkbox de l'icone cliquable qu'on rend invisible*/
 #menuToggle input
 {
     display: block;
@@ -196,15 +199,13 @@ footer
 
     cursor: pointer;
 
-    opacity: 0; /* hide this */
-    z-index: 2; /* and place it over the hamburger */
+    opacity: 0;
+    z-index: 2;
 
     -webkit-touch-callout: none;
 }
 
-/*
- * Just a quick hamburger
- */
+/*creation de l'icone avec 3 spans*/
 #menuToggle span
 {
     display: block;
@@ -235,10 +236,7 @@ footer
     transform-origin: 0 100%;
 }
 
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
+/*creation de l'animation de l'icone (passage de 3 barres à une croix*/
 #menuToggle input:checked ~ span
 {
     opacity: 1;
@@ -246,35 +244,29 @@ footer
     background: #232323;
 }
 
-/*
- * But let's hide the middle one.
- */
+/*on cache la barre du milieu*/
 #menuToggle input:checked ~ span:nth-last-child(3)
 {
     opacity: 0;
     transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-/*
- * Ohyeah and the last one should go the other direction
- */
+/*la dernière barre doit tourner dans l'autre sens par rapport à la première*/
 #menuToggle input:checked ~ span:nth-last-child(2)
 {
     transform: rotate(-45deg) translate(0, -1px);
 }
 
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
+/*contenu du menu*/
 #menu
 {
     position: absolute;
-    width: 230px;
-    margin: -75px 0 0 -50px;
-    padding: 50px;
-    padding-top: 100px;
-    color: #B26C6F;
+    width: 250px;
+    margin: -75px 0 0 -75px;
+    padding-left: 75px;
+    padding-top: 120px;
+    padding-bottom: 20px;
+    padding-right: 20px;
     box-shadow: 5px 5px 10px #330C0E;
 
     background: white;
@@ -288,40 +280,144 @@ footer
 
 #menu div
 {
-    padding: 10px 0;
-    font-size: 23px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 150px;
+    margin-top: 10px;
+    margin-left: 55px;
+    font-size: 15px;
+    display: block;
+    position: relative;
 }
 
 #menu input
 {
-    opacity: 1;
     width: 20px;
     height: 20px;
     margin-right: 5%;
     position: relative;
     float: left;
     vertical-align: bottom;
-    top: 2px;
+    top: 0.5px;
 
 }
 
-#menu label:hover
+/*rend les checkbox de #super_cat2 visibles*/
+#super_cat2 input
 {
-    color: #431416;
+    opacity: 1;
+}
+
+/*modifications apportées au label des checkbox*/
+#super_cat2 label
+{
+    color: #330C0E;
+    font-weight: bold;
+}
+
+/*change de couleur quand le curseur passe sur le label*/
+#super_cat2 label:hover
+{
+    color: #B26C6F;
     cursor: pointer;
 }
 
-#menu input:checked + label
+/*quand la checkbox est checked, la couleur du label est fixée*/
+#super_cat2 input:checked + label
 {
-    color: #431416;
+    color: #B26C6F;
+}
+
+/* fait slider le menu depuis la gauche */
+#menuToggle input:checked ~ ul
+{
+    transform: none;
+}
+
+li
+{
+    list-style-type: none;
+}
+
+.super_categorie
+{
+    display: inline-block;
+    margin-bottom: 30px;
+    width : 200px;
+
+}
+
+input
+{
+    display: none;
+}
+
+/*modifications sur le nom des super catégories*/
+.super_cat ~ label
+{
+    font-size: 23px;
+    display: inline-block;
+    position: relative;
+    color: #B26C6F;
+    cursor: pointer;
+
+}
+
+/*changement de couleur quand le curseur passe sur le nom*/
+.super_cat ~ label:hover
+{
+    color: #330C0E;
 }
 
 
-
-/*
- * And let's slide it in from the left
- */
-#menuToggle input:checked ~ fieldset
+.super_cat ~ ul
 {
-    transform: none;
+    display: none;
+}
+
+.super_cat:checked ~ ul
+{
+    display: block;
+}
+
+/*creation de l'animation avec les flèches (passage de la flèche pointant à droite à celle pointant en bas lorsque cliqué ----------------------*/
+.super_cat:checked ~ .arrow_right
+{
+    display: none;
+}
+
+.super_cat:checked ~ .arrow_bottom
+{
+    display: inline;
+}
+
+.super_cat:not(:checked) ~ .arrow_right
+{
+    display: inline;
+}
+
+.super_cat:not(:checked) ~ .arrow_bottom
+{
+    display: none;
+}
+
+/*modifications sur les sous-catégories qui sont des liens -------------------------------------------------------------------------------------*/
+.sous_cat
+{
+
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-left: 50px;
+}
+
+.sous_cat a
+{
+    text-decoration: none;
+    color: #330C0E;
+    font-weight: bold;
+}
+
+.sous_cat a:hover
+{
+    color: #B26C6F;
 }
