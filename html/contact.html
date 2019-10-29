@@ -1,70 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="../css/principal.css" />
-        <link rel="stylesheet" href="../css/contact.css" />
-        <link rel="icon" type="image/png" href="../img/logo.png">
-        <title>SecNews</title>
-    </head>
-    <body>
-        <header>
-            <img id="logo" src="../img/logo.png" alt="Sec'News logo"/>
-            <h1> SecNews </h1>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/principal.css" />
+    <link rel="stylesheet" href="../css/contact.css" />
+    <link rel="icon" type="image/png" href="../img/logo.png"/>
+    <title>SecNews</title>
+</head>
+<body>
+<header>
+    <img id="logo" src="../img/logo.png" alt="Sec'News logo"/>
+    <h1> SecNews </h1>
+</header>
 
-        <ul id="bande">
-            <li class="lien"><a href="accueil.html" id="accueil">Home</a></li>
-            <li class="lien"><a href="contact.html" id="contact">Contact us!</a></li>
-            <li class="lien"><a href="help.html" id="help">Need help?</a></li>
-        </ul>
+<section id="menu_navigation">
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input id="burger" type="checkbox" />
 
-        <form id="search-container" onsubmit = "search(); return false;">
-            <div>
-                <form>
-                    <input id="search-bar" type="text"  placeholder="Search">
-                    <input id="search_button" type="submit" value="submit">
-                </form>
+            <span></span>
+            <span></span>
+            <span></span>
 
-            </div>
-        </form>
-        <section id="menu_navigation">
-            <nav role="navigation">
-                <div id="menuToggle">
-                    <input id="burger" type="checkbox" />
+            <ul id="menu">
+                <li class="super_categorie">
+                    <input type ="checkbox" id="c1" class="super_cat"/>
+                    <img src="../img/arrow_right.png" class="arrow_right" style="width: 10px; height: 10px">
+                    <img src="../img/arrow_bottom.png" class="arrow_bottom" style="width: 10px; height: 10px">
+                    <label for="c1">Navigation</label>
+                    <ul>
+                        <li class="sous_cat"><a href="accueil.html">Home</a></li>
+                        <li class="sous_cat"><a href="contact.html">Contact</a></li>
+                        <li class="sous_cat"><a href="help.html">Need help?</a></li>
+                    </ul>
+                </li>
 
-                    <span></span>
-                    <span></span>
-                    <span></span>
-
-                    <fieldset id="menu">
-                        <div id="cb1">
-                            <input type="checkbox" id="cat1" >
-                            <label for="cat1" aria-describedby="label">catégorie1</label>
-                        </div>
-                        <div id="cb2">
-                            <input type="checkbox" id="cat2" >
-                            <label for="cat2" aria-describedby="label">catégorie2</label>
-                        </div>
-                        <div id="cb3">
-                            <input type="checkbox" id="cat3" >
-                            <label for="cat3" aria-describedby="label">catégorie3</label>
-                        </div>
-                        <div id="cb4">
-                            <input type="checkbox" id="cat4" >
-                            <label for="cat4" aria-describedby="label">catégorie4</label>
-                        </div>
-                        <div id="cb5">
-                            <input type="checkbox" id="cat5" >
-                            <label for="cat5" aria-describedby="label">catégorie5</label>
-                        </div>
-                        <div id="cb6">
-                            <input type="checkbox" id="cat6" >
-                            <label for="cat6" aria-describedby="label">catégorie6</label>
-                        </div>
-                    </fieldset>
-                </div>
-            </nav>
+                <li class="super_categorie">
+                    <input type="checkbox" id="c3" class="super_cat"/>
+                    <img src="../img/arrow_right.png" class="arrow_right" style="width: 10px; height: 10px">
+                    <img src="../img/arrow_bottom.png" class="arrow_bottom" style="width: 10px; height: 10px">
+                    <label for="c3">Profile</label>
+                    <ul>
+                        <li class="sous_cat"><a href="#">Log in</a></li>
+                        <li class="sous_cat"><a href="#">Sign up</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
             <h3> For all your cybersecurity news!</h3>
         </section>
 
