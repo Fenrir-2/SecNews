@@ -272,8 +272,7 @@ footer
     position: absolute;
     width: 230px;
     margin: -75px 0 0 -50px;
-    padding: 50px;
-    padding-top: 100px;
+    padding: 100px 50px 50px;
     color: #B26C6F;
     box-shadow: 5px 5px 10px #330C0E;
 
@@ -284,6 +283,7 @@ footer
     transform: translate(-110%, 0);
 
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+
 }
 
 #menu div
@@ -325,3 +325,22 @@ footer
 {
     transform: none;
 }
+
+
+@media (max-width: 1420px){
+    header{
+        /*TODO: Replace by transform upwards*/
+        visibility: hidden;
+    }
+
+    #menu_navigation h3{
+        margin-left: 85px;
+    }
+}
+
+@media (max-width: 900px) {
+    #menu_navigation h3{
+        visibility: hidden;
+    }
+}
+/*TODO: Add logo on width < 900*/
