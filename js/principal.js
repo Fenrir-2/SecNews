@@ -1,35 +1,26 @@
-searchBarState="visible";
+//Used for the seach bar hiding function
+let searchBarState="visible";
 
+/**
+ * First looks up if the media query is met, then
+ * applies an opacity of 0, which triggers the transition defined
+ * in the css file
+ */
 function hideSearchBar() {
-    if (window.searchBarState === "visible") {
-        document.getElementById("search-container").style.display='none';
-        window.searchBarState = "hidden";
-        console.log("Changed state");
-    } else {
-        sleep(300).then(() => {
-            window.searchBarState = "visible";
-            document.getElementById("search-container").style.display='';
-        });
-    }
-}
-
-function opacityGradient(elt, time, steps, direction) {
-    opacityStep = Number(steps)/Number(time);
-    opacityTiming = Number(time)/Number(steps);
-    if(direction === "up"){
-        for(i = 0; i<steps; i++){
-
+    if(window.matchMedia("(max-width: 900px)").matches){
+        if (searchBarState === "visible") {
+            document.getElementById("search-container").style.opacity='0';
+            searchBarState = "hidden";
+        } else {
+            searchBarState = "visible";
+            document.getElementById("search-container").style.opacity='1';
         }
-    }else{
-
     }
 }
 
+/**
+ * Triggered when the search button is clicked
+ */
 function search() {
     console.log(document.getElementById("search-bar").value);
-}
-
-// sleep time expects milliseconds
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
 }

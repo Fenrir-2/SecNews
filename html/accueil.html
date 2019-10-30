@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/principal.css" />
         <link rel="stylesheet" href="../css/accueil.css" />
         <link rel="icon" type="image/png" href="../img/logo.png"/>
+        <script src="../js/principal.js"></script>
         <title>SecNews</title>
     </head>
     <body>
@@ -14,9 +15,9 @@
         </header>
 
         <section id="menu_navigation">
-            <nav role="navigation">
+            <nav>
                 <div id="menuToggle">
-                    <input id="burger" type="checkbox" />
+                    <input id="burger" type="checkbox" onchange="hideSearchBar()" />
 
                     <span></span>
                     <span></span>
@@ -86,22 +87,19 @@
 
         <form id="search-container" onsubmit = "search(); return false;">
             <div>
-                <form>
                     <input id="search-bar" type="text"  placeholder="Search"/>
                     <input id="search_button" type="submit" value="submit"/>
-                </form>
-
             </div>
         </form>
 
         <!-- CODE GOES HERE -->
         <div id="main-content">
             <ul id="article_list">
-                <li id="article1">
+                <li class="article">
                     <div class="article_content">
                         <h2><a href="#" class="title">Titre article 1</a></h2>
                         <a href="#" class="ref_cat">référence catégorie</a>
-                        <img src="#"/>
+                        <img src="#" alt="Article picture"/>
                         <p>Début article ...................................................................................</p>
                     </div>
                 </li>
@@ -110,7 +108,7 @@
                     <div class="article_content">
                         <h2><a href="#" class="title">Titre article 2</a></h2>
                         <a href="#" class="ref_cat">référence catégorie</a>
-                        <img src="#"/>
+                        <img src="#" alt="Article picture"/>
                         <p>Début article ...................................................................................</p>
                     </div>
                 </li>
@@ -119,7 +117,7 @@
                     <div class="article_content" >
                         <h2><a href="#" class="title">Titre article 3</a></h2>
                         <a href="#" class="ref_cat">référence catégorie</a>
-                        <img src="#"/>
+                        <img src="#" alt="Article picture"/>
                         <p>Début article ...................................................................................</p>
                     </div>
                 </li>
@@ -128,7 +126,7 @@
                     <div class="article_content">
                         <h2><a href="#" class="title">Titre article 4</a></h2>
                         <a href="#" class="ref_cat">référence catégorie</a>
-                        <img src="#"/>
+                        <img src="#" alt="Article picture"/>
                         <p>Début article ...................................................................................</p>
                     </div>
                 </li>
@@ -137,7 +135,7 @@
                     <div class="article_content">
                         <h2><a href="#" class="title">Titre article 5</a></h2>
                         <a href="#" class="ref_cat">référence catégorie</a>
-                        <img src="#"/>
+                        <img src="#" alt="Article picture"/>
                         <p>Début article ...................................................................................</p>
                     </div>
                 </li>
