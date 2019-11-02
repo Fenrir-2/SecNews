@@ -17,7 +17,7 @@
         <section id="menu_navigation">
             <nav>
                 <div id="menuToggle">
-                    <input id="burger" type="checkbox" onchange="hideSearchBar()" />
+                    <input id="burger" type="checkbox" onchange="hideOnClick()" />
 
                     <span></span>
                     <span></span>
@@ -82,7 +82,7 @@
                     </ul>
                 </div>
             </nav>
-            <h3> For all your cybersecurity news!</h3>
+            <h3 id="motto"> For all your cybersecurity news!</h3>
         </section>
 
         <form id="search-container" onsubmit = "search(); return false;">

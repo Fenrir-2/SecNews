@@ -1,18 +1,23 @@
-//Used for the seach bar hiding function
-let searchBarState="visible";
-
 /**
  * First looks up if the media query is met, then
  * applies an opacity of 0, which triggers the transition defined
  * in the css file
  */
-function hideSearchBar() {
+function hideOnClick() {
+    //Hiding the text
+    if (document.getElementById("motto").style.opacity === "1"
+        || document.getElementById("motto").style.opacity === "") {
+        document.getElementById("motto").style.opacity='0';
+    } else {
+        document.getElementById("motto").style.opacity='1';
+    }
+
+    //Hiding the search bar if needed
     if(window.matchMedia("(max-width: 900px)").matches){
-        if (searchBarState === "visible") {
+        if (document.getElementById("search-container").style.opacity === "1"
+        || document.getElementById("search-container").style.opacity === "") {
             document.getElementById("search-container").style.opacity='0';
-            searchBarState = "hidden";
         } else {
-            searchBarState = "visible";
             document.getElementById("search-container").style.opacity='1';
         }
     }

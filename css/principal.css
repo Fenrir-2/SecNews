@@ -108,7 +108,7 @@ h3
     position: absolute;
     top: 20px;
     right: 10px;
-    opacity: 1.0;
+    opacity: 1;
     transition: opacity 1s;
 }
 
@@ -337,7 +337,7 @@ footer
     transform: none;
 }
 
-@media (max-width: 1420px){
+@media (max-width: 1200px){
     header{
         transform: translateY(-1000px);
     }
@@ -347,7 +347,7 @@ footer
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 770px) {
     #menu_navigation h3{
         transform: translateX(-900px);
         /*visibility: hidden;*/
