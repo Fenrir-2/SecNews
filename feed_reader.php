@@ -1,7 +1,7 @@
 <?php
 require 'go_db.php';
 
-
+#Function used to load the file and remove all CR and/or LF from the resulting strings
 function load_file($file) {
     $tmp = file($file);
     $result = [];
@@ -46,18 +46,26 @@ function fetch_all_feeds($feeds) {
     return $news;
 }
 
-function push_feeds($feeds) {
+#Function used to sort articles according to categories
+function category_sorting($feeds) {
 
-    foreach($feeds as $feed) {
-        
-        // echo key($feed)."\n";
-        push_to_db(key($feed),$feed);
-    }
+}
+
+
+#Function used to push the feeds in the database so they are available to display
+function push_articles($feeds) {
+
+}
+
+#Function used to add new sites to the database in order to fetch them later on 
+function push_site($url) {
+
 }
 
 #Loading the feeds list
 $flux = load_file("feeds.txt");
+#Fetching all the feeds
 $news = fetch_all_feeds($flux);
-push_feeds($news);
+
 
 ?>
