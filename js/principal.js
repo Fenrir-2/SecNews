@@ -36,12 +36,12 @@ function hideOnClick() {
 function createArticle(title, content, picture, category, link) {
     if(link == null || title == null || content == null  || category == null){
         console.log("Missing required parameter to create article.");
-        return;
+        return null;
     }
 
     if(title === "" || content === "" || category === "" || link === ""){
         console.log("Missing required parameter to create article.");
-        return;
+        return null;
     }
 
     if(picture === "" || picture == null){
@@ -103,7 +103,7 @@ function createArticle(title, content, picture, category, link) {
 function getPicByCateg(category) {
     if(category === "" || category == null){
         console.log("Missing required parameter to get default picture.");
-        return;
+        return "";
     }
 
     return "#";

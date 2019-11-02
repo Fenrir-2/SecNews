@@ -3,10 +3,15 @@
 /* intégration nouvelle police */
 @font-face {
     font-family: 'NotoMono';
+    font-display: swap;
     src: url('../fonts/NotoMono-Regular.ttf');
 }
 
-
+/* Police de secours en attendant que la première se charge */
+@font-face {
+    font-family: "DejaVu Sans";
+    font-display: fallback;
+}
 /* * = modifications sur la page entière */
 *
 {
@@ -301,7 +306,7 @@ footer
     position: relative;
     float: left;
     vertical-align: bottom;
-    top: 0.5px;
+    top: 1px;
 
 }
 
