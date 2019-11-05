@@ -357,7 +357,12 @@ footer
         transform: translateX(-900px);
         /*visibility: hidden;*/
     }
+
+    #menuToggle{
+        left: 10px;
+    }
 }
+
 /*TODO: Add logo on width < 900*/
 li
 {
