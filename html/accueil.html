@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="../css/principal.css" />
         <link rel="stylesheet" href="../css/accueil.css" />
         <link rel="icon" type="image/png" href="../img/logo.png"/>
-        <script src="../js/principal.js" async></script>
         <title>SecNews</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="Description" content="A small, scalable IT-Sec threat intel web application">
@@ -20,6 +19,7 @@
         <section id="menu_navigation">
             <nav>
                 <div id="menuToggle">
+                    <label for="burger"></label>
                     <input id="burger" type="checkbox" onchange="hideOnClick()" />
                     <span></span>
                     <span></span>
@@ -77,8 +77,8 @@
                             <img src="../img/arrow_bottom.png" class="arrow_bottom" alt="Bottom arrow" style="width: 10px; height: 10px">
                             <label for="c3">Profile</label>
                             <ul>
-                                <li class="sous_cat"><a href="#">Log in</a></li>
-                                <li class="sous_cat"><a href="#">Sign up</a></li>
+                                <li class="sous_cat"><a href="login.html">Log in</a></li>
+                                <li class="sous_cat"><a href="sign-up.html">Sign up</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -89,19 +89,76 @@
 
         <form id="search-container" onsubmit = "search(); return false;">
             <div>
-                    <input id="search-bar" type="text"  placeholder="Search"/>
-                    <input id="search_button" type="submit" value="submit"/>
+                <label for="search-bar">
+                </label>
+                <input id="search-bar" type="text" placeholder="Search">
+
+                <label for="search_button">
+                </label>
+                <input id="search_button" type="submit" value="submit">
             </div>
         </form>
 
         <!-- CODE GOES HERE -->
-
         <div id="main-content">
             <ul id="article_list">
-            </ul>
-        </div>
+                <li class="article">
+                    <div class="article_content">
+                        <h2>
+                            <a href="#" class="title">Titre article 1</a>
+                        </h2>
+                        <a href="#" class="ref_cat">référence catégorie</a>
+                        <img src="#" alt="Article picture"/>
+                        <p>Début article ...................................................................................</p>
+                    </div>
+                </li>
 
-        <!-- CODE GOES HERE -->
+                <li class="article">
+                    <div class="article_content">
+                        <h2>
+                            <a href="#" class="title">Titre article 2</a>
+                        </h2>
+                        <a href="#" class="ref_cat">référence catégorie</a>
+                        <img src="#" alt="Article picture"/>
+                        <p>Début article ...................................................................................</p>
+                    </div>
+                </li>
+
+                <li class="article">
+                    <div class="article_content" >
+                        <h2>
+                            <a href="#" class="title">Titre article 3</a>
+                        </h2>
+                        <a href="#" class="ref_cat">référence catégorie</a>
+                        <img src="#" alt="Article picture"/>
+                        <p>Début article ...................................................................................</p>
+                    </div>
+                </li>
+
+                <li class="article">
+                    <div class="article_content">
+                        <h2>
+                            <a href="#" class="title">Titre article 4</a>
+                        </h2>
+                        <a href="#" class="ref_cat">référence catégorie</a>
+                        <img src="#" alt="Article picture"/>
+                        <p>Début article ...................................................................................</p>
+                    </div>
+                </li>
+
+                <li class="article">
+                    <div class="article_content">
+                        <h2>
+                            <a href="#" class="title">Titre article 5</a>
+                        </h2>
+                        <a href="#" class="ref_cat">référence catégorie</a>
+                        <img src="#" alt="Article picture"/>
+                        <p>Début article ...................................................................................</p>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
 
         <footer>
             <p class="footer">© 2019 Kieran Le Pendeven, Maxime Boury, Nicolas Fonnier, Anaïs Balzé</p>

@@ -1,0 +1,26 @@
+input{
+    -webkit-box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.5) ;
+    border: 4px double rgba(201,177,177,0.7);
+    -webkit-border-radius: 63px;
+    border-radius: 63px;
+    display: block;
+    margin: 15px auto;
+    font-size: x-large;
+    padding: 10px;
+    opacity: 0.8;
+    background: rgba(99,88,88,0.33);
+    color: #8E3538;
+}
+
+input::placeholder {
+    color: #8E3538;
+}
+
+#input-button{
+    color: #8E3538;
+}
+
+#login-form{
+    margin-top: 5%;
+}
