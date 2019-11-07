@@ -13,7 +13,7 @@ A small, scalable IT-Sec threat intel web application
 
 - [x]  Website blueprint (HTML)
 - [x]  Responsive (HTML, CSS, JS)
-- [ ]  Data display (JS)
+- [x]  Data display (JS)
 - [x]  Good looking and lightweight (CSS)
 
 ## Back End
