@@ -1,6 +1,7 @@
 <?php
 require 'go_db.php';
 
+#TODO replace this function to pull the feeds url from the database
 #Function used to load the file and remove all CR and/or LF from the resulting strings
 function load_file($file) {
     $tmp = file($file);
@@ -21,7 +22,8 @@ function read_rss($url){
     #Loop taking each item from the channel and parsing the fields within it
     foreach($rss->channel->item as $item) {
         $datetime = date_create($item->pubDate);
-        $date = date_format($datetime,'d M Y, H\hi');
+        // $date = date_format($datetime,'d M Y, H\hi');
+        $date = $datetime->getTimestamp();
         $title = utf8_decode($item->title);
         $link = strval($item->link);
         $desc = addslashes(strval($item->description));
@@ -47,19 +49,25 @@ function fetch_all_feeds($feeds) {
 }
 
 #Function used to sort articles according to categories
-function category_sorting($feeds) {
+function category_sorting($feeds,$dict) {
+    #TODO implementing the sorting with a dictionnary for each category
 
+
+    return ;
 }
 
 
 #Function used to push the feeds in the database so they are available to display
 function push_articles($feeds) {
-
+    #TODO call category sorting to sort articles according to the categories
+    # then push it using insert_category from go_db.php
+    
 }
 
 #Function used to add new sites to the database in order to fetch them later on 
-function push_site($url) {
-
+function push_site($url,$name) {
+    #TODO parsing vars from any js or php possible code
+    insert_feed($url,$name);
 }
 
 #Loading the feeds list
