@@ -76,6 +76,13 @@ h1
     margin-bottom: 40px;
 }
 
+#header-div{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
 /*réglages en tête de page ---------------------------------------------------------------------------------------------------------------------------------------------*/
 h3
 {
@@ -93,7 +100,8 @@ h3
     background-image: url("../img/fond.png");
     background-size: cover;
     background-repeat: no-repeat;
-    box-shadow: 0 -10px 10px inset;
+    -webkit-box-shadow: 0 0 2px 2px rgba(0,0,0,0.5) ;
+    box-shadow: 0 0 4px 4px rgba(0,0,0,0.5) ;
     display: block;
 
 

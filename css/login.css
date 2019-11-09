@@ -21,6 +21,10 @@ input::placeholder {
     color: #8E3538;
 }
 
+input:hover{
+    background: lightgray;
+}
+
 #login-form{
     margin-top: 5%;
 }
