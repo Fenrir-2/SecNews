@@ -1,5 +1,6 @@
 <?php
-
+#TODO: Test the queries, then test its security. 
+#
 #Function used to establish connection with the MariaDB server
 function db_connect(){
 
