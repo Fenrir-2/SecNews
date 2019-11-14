@@ -1,6 +1,13 @@
 <?php
 require 'go_db.php';
 
+#TODO, enter in a waiting state, waiting for 1) a user asking for articles refreshing
+#2) the periodical refresh
+#3) wait for the admin to connect 
+#4) wait for an user to connect
+# --> all of this should be made through $_POST/$_GET requests.
+# the isset has to be taken in account to avoid data leaks/ crash 
+
 #TODO replace this function to pull the feeds url from the database
 #Function used to load the file and remove all CR and/or LF from the resulting strings
 function load_file($file) {
@@ -14,15 +21,18 @@ function load_file($file) {
 }
 
 # Function parsing article from the feeds and the different fields in it
+#TODO: Handle errors in the url and items + xml object (is the object unserialized?)
 function read_rss($url){
     #XML feed loading as an XMLObject
     $rss = simplexml_load_file($url);
     $result = [];
-
+    $i=0;
     #Loop taking each item from the channel and parsing the fields within it
     foreach($rss->channel->item as $item) {
         $datetime = date_create($item->pubDate);
-        // $date = date_format($datetime,'d M Y, H\hi');
+	// $date = date_format($datetime,'d M Y, H\hi');
+	echo($i);
+	$i=$i+1;
         $date = $datetime->getTimestamp();
         $title = utf8_decode($item->title);
         $link = strval($item->link);
@@ -34,11 +44,12 @@ function read_rss($url){
     return [$url=>$result];
 }
 
+
 # Function fetching all the feed from each source
 function fetch_all_feeds($feeds) {
     $news=[];
 
-    #Take each feed from the list and fetch it
+    #Take each feed from the list and append it to the news board.
     foreach($feeds as $feed) {
     $tmp = read_rss($feed);
         // print_r($tmp);
@@ -76,6 +87,5 @@ $flux = load_file("feeds.txt");
 #Fetching all the feeds
 $news = fetch_all_feeds($flux);
 push_site('https://test.com/','test');
-
 
 ?>
