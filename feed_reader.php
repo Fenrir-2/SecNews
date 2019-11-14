@@ -9,7 +9,7 @@ function load_file($file) {
     foreach($tmp as $link) {
         $result[] = trim($link);
     }
-    print_r($result);
+    // print_r($result);
     return $result;
 }
 
@@ -49,9 +49,10 @@ function fetch_all_feeds($feeds) {
 }
 
 #Function used to sort articles according to categories
-function category_sorting($feeds,$dict) {
+function category_sorting($feeds) {
     #TODO implementing the sorting with a dictionnary for each category
-
+    
+    $categories = query_wordlists();
 
     return ;
 }
@@ -74,6 +75,7 @@ function push_site($url,$name) {
 $flux = load_file("feeds.txt");
 #Fetching all the feeds
 $news = fetch_all_feeds($flux);
+push_site('https://test.com/','test');
 
 
 ?>

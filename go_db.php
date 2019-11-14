@@ -11,13 +11,27 @@ function db_connect(){
         return NULL;
     }
     else {
-        echo "Connection established";
+        echo "Connection established \n";
         return $client;
     }
 }
 
+#Function used to query the wordlist for each category from the database
+function query_wordlists() {
+
+    $client = db_connect();
+    $categories = $client->query("SELECT nom,wordlist FROM CATEGORIES ;");
+
+    if($categories) {        
+        return $categories;
+    }
+    else {
+        echo "Unable to fetch categories.";
+    }
+}
+
 #Function querying the content of a category after a date
-function query_category($category,$date) {
+function query_articles_by_category($category,$date) {
     $client = db_connect();
     #preparing the query and binding the vars
     $prepared = $client->prepare("SELECT * FROM categories,articles 
@@ -31,7 +45,7 @@ function query_category($category,$date) {
 }
 
 #Function inserting freshly fetched articles into the database
-function insert_category($categories, $articles) {
+function insert_articles($categories, $articles) {
     $client = db_connect();
 
     $prepared = $client->prepare("INSERT INTO ARTICLES VALUES (?,?,?,?,?,?)");
@@ -63,7 +77,7 @@ function insert_category($categories, $articles) {
 #Funtion loading feeds urls from the database
 function load_feeds() {
     $client = db_connect();
-    $result = $client->query("SELECT url FROM sites ;");
+    $result = $client->query("SELECT url FROM SITES ;");
     $client->close();
     return $result;
 }
@@ -71,9 +85,10 @@ function load_feeds() {
 #Function used to insert a new feed source in the database
 function insert_feed($url,$name) {
     $client = db_connect();
-    $query = $client-> prepare("INSERT INTO sites VALUES (?,?,?)");
-    $id = uniqid($more_entropy=TRUE);
-    $query->bind_param("ssi",$url,$name,$id);
+    $query = $client-> prepare("INSERT INTO SITES VALUES (?,?)");
+    // $id = uniqid($more_entropy=TRUE);
+    // echo $id."\n";
+    $query->bind_param("ss",$url,$name);
     $query->execute();
 }
 

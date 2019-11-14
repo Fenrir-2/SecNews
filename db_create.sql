@@ -1,0 +1,31 @@
+CREATE DATABASE SecNews;
+USE SecNews;
+CREATE TABLE SITES (
+    Id MEDIUMINT(255)UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+    Url TINYTEXT, 
+    nom VARCHAR(100));
+CREATE TABLE CATEGORIES (
+    Id MEDIUMINT(255)UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+    Nom VARCHAR(100), 
+    wordlist TEXT);
+CREATE TABLE ARTICLES (
+    Title VARCHAR(300) PRIMARY KEY, 
+    pub_date TIMESTAMP, 
+    content TEXT, 
+    link TINYTEXT, 
+    id_site MEDIUMINT(255)UNSIGNED, 
+    id_cat MEDIUMINT(255)UNSIGNED, 
+    id_subcat MEDIUMINT(255)UNSIGNED,
+    CONSTRAINT `fk_id_site`
+        FOREIGN KEY (id_site) REFERENCES SITES(Id)
+        ON UPDATE RESTRICT,
+    CONSTRAINT `fk_id_cat`
+        FOREIGN KEY (id_cat) REFERENCES CATEGORIES(Id)
+        ON UPDATE RESTRICT,
+    CONSTRAINT `fk_id_subcat`
+        FOREIGN KEY (id_subcat) REFERENCES CATEGORIES(Id)
+        ON UPDATE RESTRICT);
+-- Don't forget to replace 'password' with a real password
+GRANT SELECT, INSERT, UPDATE, DELETE ON SecNews.* TO 'phpClient'@'localhost' IDENTIFIED BY password;
+GRANT SELECT ON SecNews.* TO 'frontFetcher'@'localhost' IDENTIFIED BY password;
+FLUSH PRIVILEGES;
