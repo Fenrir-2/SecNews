@@ -46,19 +46,21 @@ function query_articles_by_category($category,$date) {
 }
 
 #Function inserting freshly fetched articles into the database
-function insert_articles($categories, $articles) {
+function insert_articles($articles) {
     $client = db_connect();
 
-    $prepared = $client->prepare("INSERT INTO ARTICLES VALUES (?,?,?,?,?,?)");
+    $prepared = $client->prepare("INSERT INTO ARTICLES (Title,pub_date,content,link,id_site,id_cat,id_subcat) VALUES (?,?,?,?,?,?,?)");
 
     $title = NULL;
     $date = NULL;
     $content = NULL;
     $link = NULL;
     $id_site = NULL;
+    $id_cat = NULL;
+    $id_subcat = NULL;
 
     #Binding parameters to the prepared query
-    $prepared->bind_param("sissss",$title,$date,$content,$link,$id_site,$categories);
+    $prepared->bind_param("sissiii",$title,$date,$content,$link,$id_site,$id_cat,$id_subcat);
     
     foreach($articles as $sample) {
         print_r($sample);
@@ -67,7 +69,10 @@ function insert_articles($categories, $articles) {
         $date = $sample["pubDate"];
         $content = $sample["desc"];
         $link = $sample["link"];
-        if (is_null($date)) { }
+        // $id_site = 
+        $id_cat = $sample["id_cat"];
+        $id_subcat = $sample["id_subcat"];
+        if (is_null($date)) {time();}
 
         $prepared->execute();
     }
@@ -78,19 +83,21 @@ function insert_articles($categories, $articles) {
 #Funtion loading feeds urls from the database
 function load_feeds() {
     $client = db_connect();
-    $result = $client->query("SELECT url FROM SITES ;");
+    $result = $client->query("SELECT Id,url FROM SITES;");
     $client->close();
+    // print_r($result);
     return $result;
 }
 
 #Function used to insert a new feed source in the database
 function insert_feed($url,$name) {
     $client = db_connect();
-    $query = $client-> prepare("INSERT INTO SITES VALUES (?,?)");
-    // $id = uniqid($more_entropy=TRUE);
-    // echo $id."\n";
+    #we need to specify names of the columns because of the auto increment on the ID
+    $query = $client-> prepare("INSERT INTO SITES (Url,nom) VALUES (?,?)");
     $query->bind_param("ss",$url,$name);
     $query->execute();
 }
+
+
 
 ?>
