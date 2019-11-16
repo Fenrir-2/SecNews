@@ -18,9 +18,9 @@ A small, scalable IT-Sec threat intel web application
 
 ## Back End
 
-- [ ]  Data fetching (PHP)
-- [ ]  Agregation (PHP, ELK ?)
-- [ ]  Organisation and storage (PHP, NoSQL)
+- [x]  Data fetching (PHP)
+- [ ]  Agregation (PHP)
+- [x]  Organisation and storage (PHP, MariaDB)
 - [ ]  Pre-display processing (PHP)
 
 ## Integration
