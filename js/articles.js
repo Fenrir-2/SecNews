@@ -8,7 +8,7 @@
  * @param link The source link. Required
  * @return {Element} The article element, ready to be added
  */
-function createArticle(title, content, picture, category, link) {
+function createArticle(title, content, picture, category, link, id) {
     if(link == null || title == null || content == null  || category == null){
         console.log("Missing required parameter to create article.");
         return null;
@@ -25,7 +25,8 @@ function createArticle(title, content, picture, category, link) {
 
     //Creating li
     let mainElt = document.createElement("li");
-    mainElt.setAttribute("class", "article");
+    mainElt.setAttribute("class", "new_article");
+    mainElt.setAttribute("article_id", id);
 
     //Creating div
     let divElt = document.createElement("div");
@@ -43,8 +44,9 @@ function createArticle(title, content, picture, category, link) {
 
     //Creating category <a>
     let categLink = document.createElement("a");
-    categLink.setAttribute("href", category);
+    categLink.setAttribute("href", "#");
     categLink.setAttribute("class", "ref_cat");
+    categLink.setAttribute("onclick", "displayCateg(\"" + category + "\");return false;");
     let categNode = document.createTextNode(category);
     categLink.appendChild(categNode);
 
@@ -73,6 +75,18 @@ function createArticle(title, content, picture, category, link) {
     divElt.appendChild(articleText);
     mainElt.appendChild(divElt);
 
+    let promise1 = new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve(mainElt);
+        }, 300);
+    });
+
+    promise1.then(function (elt) {
+        console.log(elt.getAttribute("class"));
+        elt.setAttribute("class","article");
+        console.log(elt.getAttribute("class"));
+    });
+
     return mainElt;
 }
 
@@ -88,6 +102,23 @@ function addArticleTop(article) {
     }else{
         document.getElementById("article_list").insertBefore(article, articleList.item(0))
     }
+}
+
+/**
+ * Periodically rotate the top level articles
+ */
+function rotateArticles() {
+    let articleList = document.getElementsByClassName("article");
+    let stackTop = document.getElementById("article_list");
+
+
+}
+
+/**
+ * Triggered when there's a click on a category
+ * @param categ A string that is the name of the category
+ */
+function displayCateg(categ){
 }
 
 //TODO: get a default picture corresponding to each of the main category
@@ -106,14 +137,15 @@ function getPicByCateg(category) {
     return "#";
 }
 
+
 //STUB
 window.onload = function () {
 
     let lorem = "Projet d'ses morts";
-    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr"));
-    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr"));
-    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr"));
-    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr"));
+    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr"), 4);
+    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr"), 3);
+    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr"), 2);
+    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr"),1);
 };
 
 /**
@@ -147,3 +179,7 @@ function hideOnClick() {
 function search() {
     console.log(document.getElementById("search-bar").value);
 }
+
+//TODO: animer une popup (style Twitter), qui fait un lien vers le haut de page, visible uniquemt en cas de nouvel
+//      article qui ne soit pas dans la vue du user
+//TODO: fetch des articles vers le bas: Envoi d'un id vers back-end -> Stocker le plus petit et le plus gd id
