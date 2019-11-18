@@ -6,9 +6,11 @@
  * @param picture The picture to use for the article. Optional
  * @param category The main category under which this article falls. Required
  * @param link The source link. Required
+ * @param id The received id of the article. Required
+ * @param showAsNew Defaults to true. If the article should have a color effect on arrival or not
  * @return {Element} The article element, ready to be added
  */
-function createArticle(title, content, picture, category, link, id) {
+function createArticle(title, content, picture="", category, link, id, showAsNew=true) {
     if(link == null || title == null || content == null  || category == null){
         console.log("Missing required parameter to create article.");
         return null;
@@ -25,7 +27,10 @@ function createArticle(title, content, picture, category, link, id) {
 
     //Creating li
     let mainElt = document.createElement("li");
-    mainElt.setAttribute("class", "new_article");
+    if(showAsNew){
+        mainElt.setAttribute("class", "new_article");
+    }
+    mainElt.setAttribute("class", "article");
     mainElt.setAttribute("article_id", id);
 
     //Creating div
@@ -75,17 +80,19 @@ function createArticle(title, content, picture, category, link, id) {
     divElt.appendChild(articleText);
     mainElt.appendChild(divElt);
 
-    let promise1 = new Promise(function(resolve, reject) {
-        setTimeout(function() {
-            resolve(mainElt);
-        }, 300);
-    });
+    if(showAsNew){
+        let promise1 = new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                resolve(mainElt);
+            }, 300);
+        });
 
-    promise1.then(function (elt) {
-        console.log(elt.getAttribute("class"));
-        elt.setAttribute("class","article");
-        console.log(elt.getAttribute("class"));
-    });
+        promise1.then(function (elt) {
+            console.log(elt.getAttribute("class"));
+            elt.setAttribute("class","article");
+            console.log(elt.getAttribute("class"));
+        });
+    }
 
     return mainElt;
 }
@@ -142,10 +149,10 @@ function getPicByCateg(category) {
 window.onload = function () {
 
     let lorem = "Projet d'ses morts";
-    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr"), 4);
-    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr"), 3);
-    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr"), 2);
-    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr"),1);
+    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr"), 4, false);
+    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr"), 3, false);
+    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr"), 2, false);
+    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr"),1, false);
 };
 
 /**
