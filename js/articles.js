@@ -27,10 +27,11 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
 
     //Creating li
     let mainElt = document.createElement("li");
-    if(showAsNew){
+    if(showAsNew === true){
         mainElt.setAttribute("class", "new_article");
+    }else{
+        mainElt.setAttribute("class", "article");
     }
-    mainElt.setAttribute("class", "article");
     mainElt.setAttribute("article_id", id);
 
     //Creating div
@@ -80,7 +81,7 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     divElt.appendChild(articleText);
     mainElt.appendChild(divElt);
 
-    if(showAsNew){
+    if(showAsNew === true){
         let promise1 = new Promise(function(resolve, reject) {
             setTimeout(function() {
                 resolve(mainElt);
@@ -149,10 +150,10 @@ function getPicByCateg(category) {
 window.onload = function () {
 
     let lorem = "Projet d'ses morts";
-    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr"), 4, false);
-    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr"), 3, false);
-    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr"), 2, false);
-    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr"),1, false);
+    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr", 4, false));
+    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr", 3, false));
+    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr", 2, false));
+    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr", 1, false));
 };
 
 /**
