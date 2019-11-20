@@ -1,10 +1,10 @@
 <?php
 #TODO: Test the queries, then test its security. 
-#
-#Function used to establish connection with the MariaDB server
-function db_connect(){
 
-    $client = new mysqli('localhost','phpClient',trim(file_get_contents(".pwd")),'SecNews');
+#Function used to establish connection with the MariaDB server
+function db_connect($user = 'phpClient',$path = '.pwd'){
+
+    $client = new mysqli('localhost',$user,trim(file_get_contents($path)),'SecNews');
     if($client->connect_errno) {
         echo "Connection failed.";
         echo "Errno: " . $mysqli->connect_errno . "\n";
@@ -32,14 +32,44 @@ function query_wordlists() {
 }
 
 #Function querying the content of a category after a date
-function query_articles_by_category($category,$date) {
+function query_articles_by_category($category) {
     $client = db_connect();
     #preparing the query and binding the vars
-    $prepared = $client->prepare("SELECT * FROM categories,articles 
-                    WHERE categories.nom_categorie = ? AND categories.id_cat = articles.id_cat AND CAST(articles.pub_date AS INTEGER) >= ?;");  
-    $prepared->bind_param("si",$category,$date);
+    $prepared = $client->prepare("SELECT * FROM CATEGORIES, ARTICLES 
+                  WHERE CATEGORIES.nom = ? AND (CATEGORIES.Id = ARTICLES.id_cat OR CATEGORIES.Id = ARTICLES.id_subcat) ORDER BY ARTICLES.pub_date;");
+    $prepared->bind_param("s",$category);
     #execute the query and close the prepared statement
     $result = $prepared->execute();
+    $prepared->close();
+
+    return $result;
+}
+
+#Function used to query articles after a certain date
+function query_articles_after_date($timestamp) {
+    $client = db_connect("frontFetcher",".pwd2");
+
+    $prepared = $client->prepare("SELECT * FROM ARTICLES WHERE pub_date > ? ORDER BY pub_date;");
+
+    $prepared->bind_param("i",$timestamp);
+
+    $result = $prepared->execute();
+
+    $prepared->close();
+
+    return $result;
+}
+
+#Fucntion used to query an article searching in the title
+function query_articles_by_title($title){
+    $client = db_connect("frontFetcher",".pwd2");
+
+    $prepared = $client->prepare("SELECT * FROM ARTICLES WHERE title=?;");
+
+    $prepared->bind_param("s","%".$title."%");
+
+    $result = $prepared->execute();
+
     $prepared->close();
 
     return $result;
@@ -55,7 +85,8 @@ function insert_articles($articles) {
     $date = NULL;
     $content = NULL;
     $link = NULL;
-    $id_site = NULL;
+    // $id_site = NULL;
+    $id_site = key($articles);
     $id_cat = NULL;
     $id_subcat = NULL;
 
@@ -69,7 +100,7 @@ function insert_articles($articles) {
         $date = $sample["pubDate"];
         $content = $sample["desc"];
         $link = $sample["link"];
-        // $id_site = 
+        // $id_site = key($articles);
         $id_cat = $sample["id_cat"];
         $id_subcat = $sample["id_subcat"];
         if (is_null($date)) {time();}
