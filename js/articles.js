@@ -89,9 +89,7 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
         });
 
         promise1.then(function (elt) {
-            console.log(elt.getAttribute("class"));
             elt.setAttribute("class","article");
-            console.log(elt.getAttribute("class"));
         });
     }
 
@@ -104,12 +102,26 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
  * @param article The article to add
  */
 function addArticleTop(article) {
+    console.assert(article != null, "Received null parameter");
+
     let articleList = document.getElementsByClassName("article");
     if(articleList.length === 0){
         document.getElementById("article_list").appendChild(article)
     }else{
         document.getElementById("article_list").insertBefore(article, articleList.item(0))
     }
+}
+
+/**
+ * Adds an article at the bottom of the list
+ *
+ * @param article The article to add
+ */
+function addArticleBottom(article) {
+    console.assert(article != null, "Received null parameter");
+
+    let articleList = document.getElementById("article_list");
+    articleList.appendChild(article);
 }
 
 /**
@@ -129,7 +141,6 @@ function rotateArticles() {
 function displayCateg(categ){
 }
 
-//TODO: get a default picture corresponding to each of the main category
 /**
  * Returns the default picture of a category in case one wasn't given
  *
@@ -148,7 +159,6 @@ function getPicByCateg(category) {
 
 //STUB
 window.onload = function () {
-
     let lorem = "Projet d'ses morts";
     addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr", 4, false));
     addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr", 3, false));
@@ -188,6 +198,7 @@ function search() {
     console.log(document.getElementById("search-bar").value);
 }
 
+//TODO: get a default picture corresponding to each of the main category
 //TODO: animer une popup (style Twitter), qui fait un lien vers le haut de page, visible uniquemt en cas de nouvel
 //      article qui ne soit pas dans la vue du user
 //TODO: fetch des articles vers le bas: Envoi d'un id vers back-end -> Stocker le plus petit et le plus gd id
