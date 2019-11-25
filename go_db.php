@@ -36,7 +36,7 @@ function query_articles_by_category($category) {
     $client = db_connect();
     #preparing the query and binding the vars
     $prepared = $client->prepare("SELECT * FROM CATEGORIES, ARTICLES 
-                  WHERE CATEGORIES.nom = ? AND (CATEGORIES.Id = ARTICLES.id_cat OR CATEGORIES.Id = ARTICLES.id_subcat) ORDER BY ARTICLES.pub_date;");
+                  WHERE CATEGORIES.nom = ? AND (CATEGORIES.Id = ARTICLES.id_cat OR CATEGORIES.Id = ARTICLES.id_subcat) ORDER BY ARTICLES.pub_date DESC;");
     $prepared->bind_param("s",$category);
     #execute the query and close the prepared statement
     $result = $prepared->execute();
@@ -49,7 +49,7 @@ function query_articles_by_category($category) {
 function query_articles_after_date($timestamp) {
     $client = db_connect("frontFetcher",".pwd2");
 
-    $prepared = $client->prepare("SELECT * FROM ARTICLES WHERE pub_date > ? ORDER BY pub_date;");
+    $prepared = $client->prepare("SELECT * FROM ARTICLES WHERE pub_date > ? ORDER BY Id DESC;");
 
     $prepared->bind_param("i",$timestamp);
 
@@ -64,7 +64,7 @@ function query_articles_after_date($timestamp) {
 function query_articles_by_title($title){
     $client = db_connect("frontFetcher",".pwd2");
 
-    $prepared = $client->prepare("SELECT * FROM ARTICLES WHERE title=?;");
+    $prepared = $client->prepare("SELECT * FROM ARTICLES WHERE title=? ORDER BY Id DESC;");
 
     $prepared->bind_param("s","%".$title."%");
 
@@ -129,6 +129,15 @@ function insert_feed($url,$name) {
     $query->execute();
 }
 
+#Function used to fetch all the articles ordered by id
+function fetch_articles(){
+    $client = db_connect("frontFetcher",".pwd2");
 
+    $result = $client->query("SELECT * FROM ARTICLES ORDER BY Id DESC;");
+    
+    $client->close();
+
+    return $result;
+}
 
 ?>
