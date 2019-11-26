@@ -38,6 +38,11 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     let divElt = document.createElement("div");
     divElt.setAttribute("class","article_content");
 
+    //Creating title div
+    let titleDiv = document.createElement("div");
+    titleDiv.setAttribute("id", "title_div")
+    titleDiv.style.backgroundImage = 'url("' + picture + '")';
+
     //Creating title h2
     let titleElt = document.createElement("h2");
 
@@ -57,9 +62,10 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     categLink.appendChild(categNode);
 
     //Creating img
+    /*
     let imgLink = document.createElement("img");
     imgLink.setAttribute("src", picture);
-    imgLink.setAttribute("alt", "Article picture");
+    imgLink.setAttribute("alt", "Article picture");*/
 
     //Creating p
     let articleText = document.createElement("p");
@@ -75,9 +81,10 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
 
     //Adding in the right order
     titleElt.appendChild(titleLink);
-    divElt.appendChild(titleElt);
-    divElt.appendChild(categLink);
-    divElt.appendChild(imgLink);
+    titleDiv.appendChild(titleElt);
+    titleDiv.appendChild(categLink);
+    divElt.appendChild(titleDiv);
+    //divElt.appendChild(imgLink);
     divElt.appendChild(articleText);
     mainElt.appendChild(divElt);
 
@@ -94,6 +101,15 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     }
 
     return mainElt;
+}
+
+function hideToast() {
+    if (document.getElementsByClassName("notification").item(0).style.opacity === "1"
+        || document.getElementsByClassName("notification").item(0).style.opacity === "") {
+        document.getElementsByClassName("notification").item(0).style.opacity='0';
+    } else {
+        document.getElementsByClassName("notification").item(0).style.opacity='1';
+    }
 }
 
 /**
@@ -153,13 +169,24 @@ function getPicByCateg(category) {
         return "";
     }
 
+    if(category === "Risks"){
+        return "../img/categ/risks.jpg"
+    }else if(category === "News"){
+        return "../img/categ/news.jpg"
+    }else if(category === "French Community"){
+        return "../img/categ/fr_community.jpg"
+    }else if(category === "CERT"){
+        return "../img/categ/cert alerts.jpg"
+    }
+
+
     return "#";
 }
 
 
 //STUB
 window.onload = function () {
-    let lorem = "Projet d'ses morts";
+    let lorem = "Lorem Ipsum";
     addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr", 4, false));
     addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr", 3, false));
     addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr", 2, false));
