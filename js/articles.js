@@ -218,7 +218,15 @@ function search() {
     console.log(document.getElementById("search-bar").value);
 }
 
-//TODO: get a default picture corresponding to each of the main category
+/**
+ * When the user clicks on the button, scroll to the top of the document
+ */
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    hideToast();
+}
+
 //TODO: animer une popup (style Twitter), qui fait un lien vers le haut de page, visible uniquemt en cas de nouvel
 //      article qui ne soit pas dans la vue du user
 //TODO: fetch des articles vers le bas: Envoi d'un id vers back-end -> Stocker le plus petit et le plus gd id
