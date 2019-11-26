@@ -61,12 +61,6 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     let categNode = document.createTextNode(category);
     categLink.appendChild(categNode);
 
-    //Creating img
-    /*
-    let imgLink = document.createElement("img");
-    imgLink.setAttribute("src", picture);
-    imgLink.setAttribute("alt", "Article picture");*/
-
     //Creating p
     let articleText = document.createElement("p");
 
@@ -84,7 +78,6 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     titleDiv.appendChild(titleElt);
     titleDiv.appendChild(categLink);
     divElt.appendChild(titleDiv);
-    //divElt.appendChild(imgLink);
     divElt.appendChild(articleText);
     mainElt.appendChild(divElt);
 
