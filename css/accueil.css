@@ -142,7 +142,7 @@ body
     position: absolute;
     left: 700px;
     top: 150px;
-
+    opacity: 0;
 }
 
 
