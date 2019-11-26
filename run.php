@@ -43,12 +43,17 @@ while (TRUE) {
                 }
             }
 
+            usort($articles,"compare");
+
             #fetch = ID --> on fetch 10 articles à partir de cet ID d'un pdv descendant
             if($_POST["fetch"]){
                 foreach($articles as $article){
                     if($article["Id"]===$_POST["fetch"]){$key = key($article);}
                 }
-                $articles = array_slice($article,array_search($key,array_keys($articles)),10);
+                $articles = array_slice($articles,$key,10);
+            }
+            else{
+                $articles = array_slice($articles,0,10);
             }
 
             echo (json_encode($articles));
@@ -65,16 +70,21 @@ while (TRUE) {
             foreach ($subcat_names as $subcat) {
                 $tmp = query_articles_by_category($subcat);
                 while ($row = $tmp->fetch_assoc()) {
-                    $articles[$subcat][] = $row;
+                    $articles[] = $row;
                 }
             }
+
+            usort($articles,"compare");
 
             #fetch = ID --> on fetch 10 articles à partir de cet ID d'un pdv descendant
             if($_POST["fetch"]){
                 foreach($articles as $article){
                     if($article["Id"]===$_POST["fetch"]){$key = key($article);}
                 }
-                $articles = array_slice($article,$key,10);
+                $articles = array_slice($articles,$key,10);
+            }
+            else{
+                $articles = array_slice($articles,0,10);
             }
 
             echo (json_encode($articles));
@@ -84,4 +94,9 @@ while (TRUE) {
 
         }
     }
+}
+
+#Function used to compare articles date
+function compare($a,$b){
+    return ($a["pub_date"]<$b["pub_date"]) ? 1:-1;
 }
