@@ -12,7 +12,7 @@ function db_connect($user = 'phpClient',$path = '.pwd'){
         return NULL;
     }
     else {
-        echo "Connection established \n";
+        #echo "Connection established \n";
         return $client;
     }
 }
@@ -112,7 +112,6 @@ function insert_articles($articles) {
 	else{
 	#	print_r($prepared);
 		$prepared->execute();
-		echo "Insertion successful \n";
 	#	echo $title;
     }
     }

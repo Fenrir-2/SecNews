@@ -11,14 +11,14 @@ while (TRUE) {
     #Initial represents the initial fetch, should it be true, we load the article like it never have been queried and reset everything
     # So we fetch 10 articles, else the arg is simply ignored
 
-    print_r($_POST);
+    #print_r($_POST);
 
     if (/*$_POST["initial"]*/TRUE) {
         $tmp = fetch_articles();
 
 	while ($row = $tmp->fetch_assoc()) {
 		foreach($row as $key => $value){
-			echo $row["Title"];
+			#echo $row["Title"];
 			$row[$key] = utf8_encode($value);
 		}
 		$row["Title"] = utf8_encode($row["Title"]);
