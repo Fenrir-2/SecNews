@@ -92,9 +92,10 @@ function insert_articles($articles) {
 
     #Binding parameters to the prepared query
     $prepared->bind_param("sissiii",$title,$date,$content,$link,$id_site,$id_cat,$id_subcat);
-    
-    foreach($articles as $sample) {
-        print_r($sample);
+   foreach($articles as $list){
+    foreach($list as $sample) {
+#	echo "\n\n\n SAMPLE \n\n\n";
+#        print_r($sample);
 
         $title = $sample["title"];
         $date = $sample["pubDate"];
@@ -103,10 +104,19 @@ function insert_articles($articles) {
         // $id_site = key($articles);
         $id_cat = $sample["id_cat"];
         $id_subcat = $sample["id_subcat"];
-        if (is_null($date)) {time();}
-
-        $prepared->execute();
+	if (is_null($date)) {time();}
+	if (is_null($id_cat)){$id_cat = 1;}
+	if (is_null($id_subcat)){$id_subcat = 1;}
+	if(is_null($title) or is_null($date) or is_null($content) or is_null($link) or is_null($id_cat) or is_null($id_subcat)){ echo "one or more is null";
+	}
+	else{
+	#	print_r($prepared);
+		$prepared->execute();
+		echo "Insertion successful \n";
+	#	echo $title;
     }
+    }
+   }
 
     $prepared->close();
 }

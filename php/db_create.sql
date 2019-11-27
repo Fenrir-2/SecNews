@@ -11,7 +11,7 @@ CREATE TABLE CATEGORIES (
 CREATE TABLE ARTICLES (
     Id MEDIUMINT(255)UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
     Title VARCHAR(300) UNIQUE KEY, 
-    pub_date TIMESTAMP, 
+    pub_date BIGINT UNSIGNED, 
     content TEXT, 
     link TINYTEXT, 
     id_site MEDIUMINT(255)UNSIGNED, 
@@ -27,6 +27,6 @@ CREATE TABLE ARTICLES (
         FOREIGN KEY (id_subcat) REFERENCES CATEGORIES(Id)
         ON UPDATE RESTRICT);
 -- Don't forget to replace 'password' with a real password
-GRANT SELECT, INSERT, UPDATE, DELETE ON SecNews.* TO phpClient@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT ON SecNews.* TO frontFetcher@'localhost' IDENTIFIED BY 'password';
-FLUSH PRIVILEGES;
+--GRANT SELECT, INSERT, UPDATE, DELETE ON SecNews.* TO phpClient@'localhost' IDENTIFIED BY 'password';
+--GRANT SELECT ON SecNews.* TO frontFetcher@'localhost' IDENTIFIED BY 'password';
+--FLUSH PRIVILEGES;

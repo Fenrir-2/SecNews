@@ -33,11 +33,14 @@ function read_rss($url){
 
 #Function used to check the presence of an article in the database
 function is_present_in_db($article){
-
+    if($article != null)
+    {
     $result = query_articles_by_title($article["title"]);
-
+   
     return $result->num_rows() > 0;
-}
+    }
+   return -1; 
+    }
 
 # Function fetching all the feed from each source
 function fetch_all_feeds() {
@@ -65,14 +68,15 @@ function category_sorting($feeds) {
     while($row = $just_queried->fetch_assoc()){
         $categories[] = $row;
     }
-    print_r($categories);
+#    print_r($categories);
 
     foreach($categories as $category) {
         $list = explode(',',$category['wordlist']);
         foreach($feeds as $feed) {
             foreach($feed as $article) {
                 foreach($list as $word){
-                    if(strrpos($article["desc"],$word) or strrpos($article["Title"],$word)){
+#			print_r($article);
+                    if(strrpos($article["desc"],$word) or strrpos($article["title"],$word)){
                         if(is_null($article["id_cat"])){$article["id_cat"] = $category["Id"];}
                         elseif(is_null($article["id_subcat"])) {$article["id_subcat"] = $category["Id"];}
                     }
@@ -81,7 +85,7 @@ function category_sorting($feeds) {
         }
     }
 
-    print_r($feeds);
+#    print_r($feeds);
     return $feeds ;
 }
 
@@ -90,6 +94,7 @@ function push_articles($feeds) {
     #TODO call category sorting to sort articles according to the categories
     # then push it using insert_category from go_db.php
     $sorted = category_sorting($feeds);
+#    echo "sorted_done \n";
 
     foreach($sorted as $list){
         foreach($list as $article){
@@ -98,6 +103,7 @@ function push_articles($feeds) {
     }
     foreach($sorted as $feed) {
         insert_articles($feed);
+#	echo "insertion \n";
     }
 }
 

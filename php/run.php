@@ -1,19 +1,29 @@
 <?php
 require 'feed_reader.php';
 
+#echo "entered";
 
 #Main loop used to periodically fetch articles
 while (TRUE) {
     push_articles(fetch_all_feeds());
-    sleep(30 * 60 * 60);
+    sleep(5);
+    #echo "kek";
     #Initial represents the initial fetch, should it be true, we load the article like it never have been queried and reset everything
     # So we fetch 10 articles, else the arg is simply ignored
 
-    if ($_POST["initial"]) {
+    print_r($_POST);
+
+    if (/*$_POST["initial"]*/TRUE) {
         $tmp = fetch_articles();
 
-        while ($row = $tmp->fetch_assoc()) {
-            $articles[] = $row;
+	while ($row = $tmp->fetch_assoc()) {
+		foreach($row as $key => $value){
+			echo $row["Title"];
+			$row[$key] = utf8_encode($value);
+		}
+		$row["Title"] = utf8_encode($row["Title"]);
+
+		$articles[] = $row;
         }
         
         if($_POST["fetch"]){
@@ -38,8 +48,16 @@ while (TRUE) {
 
             foreach ($cat_names as $cat) {
                 $tmp = query_articles_by_category($cat);
-                while ($row = $tmp->fetch_assoc()) {
-                    $articles[$cat][] = $row;
+		while ($row = $tmp->fetch_assoc()) {
+			foreach($row as $key => $value){
+			echo $row["Title"];
+			$row[$key] = utf8_encode($value);
+		}
+		$row["Title"] = utf8_encode($row["Title"]);
+
+
+
+                    $articles[] = $row;
                 }
             }
 
@@ -68,6 +86,13 @@ while (TRUE) {
             foreach ($subcat_names as $subcat) {
                 $tmp = query_articles_by_category($subcat);
                 while ($row = $tmp->fetch_assoc()) {
+			foreach($row as $key => $value){
+			echo $row["Title"];
+			$row[$key] = utf8_encode($value);
+		}
+		$row["Title"] = utf8_encode($row["Title"]);
+
+
                     $articles[] = $row;
                 }
             }

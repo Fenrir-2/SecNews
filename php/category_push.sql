@@ -1,3 +1,5 @@
+USE SecNews;
+INSERT INTO CATEGORIES (Nom,wordlist) VALUES ('News','en');
 INSERT INTO CATEGORIES (Nom,wordlist) VALUES ('hardware','electronique,electronics,hardware,materiels');
 INSERT INTO CATEGORIES (Nom,wordlist) VALUES ('osint','osint,geoint,sigint,humint,masint,socmint,rumint,dorks,dorking,shodan,dork,opsec');
 INSERT INTO CATEGORIES (Nom,wordlist) VALUES ('threats','menaces virus,malware');
