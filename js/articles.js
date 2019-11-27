@@ -82,13 +82,13 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
     mainElt.appendChild(divElt);
 
     if(showAsNew === true){
-        let promise1 = new Promise(function(resolve, reject) {
+        let promiseNew = new Promise(function(resolve, reject) {
             setTimeout(function() {
                 resolve(mainElt);
             }, 300);
         });
 
-        promise1.then(function (elt) {
+        promiseNew.then(function (elt) {
             elt.setAttribute("class","article");
         });
     }
@@ -135,12 +135,12 @@ function addArticleBottom(article) {
 
 /**
  * Periodically rotate the top level articles
+ * @deprecated
+ * @unused
  */
 function rotateArticles() {
     let articleList = document.getElementsByClassName("article");
     let stackTop = document.getElementById("article_list");
-
-
 }
 
 /**
@@ -148,6 +148,15 @@ function rotateArticles() {
  * @param categ A string that is the name of the category
  */
 function displayCateg(categ){
+    fetch("../php/run.php",{
+        method : 'POST',
+        body : 'initial=true&cat=' + categ,
+        headers : {
+            "Content-Type" : "application/x-www-form-urlencoded"
+        }
+    }).then(function(response) {
+        parseResponse(response);
+    });
 }
 
 /**
@@ -172,19 +181,105 @@ function getPicByCateg(category) {
         return "../img/categ/cert alerts.jpg"
     }
 
-
     return "#";
 }
 
+/**
+ * Analyzes a fetch request response and creates the according articles
+ * @param response The response to analyze
+ */
+function parseResponse(response){
+    //TODO: Wipe all content, parse response, create the articles with showAsNew = false
+}
 
-//STUB
+//TODO: move inital load of articles here instead of refreshContent
+/**
+ * Launch the initial load of the articles, then the
+ * callback function
+ */
 window.onload = function () {
+    refreshContent();
     let lorem = "Lorem Ipsum";
     addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr", 4, false));
     addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr", 3, false));
     addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr", 2, false));
     addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr", 1, false));
 };
+
+/**
+ * Call me, maybe
+ * Callback function for
+ */
+function callback() {
+    console.log("Callback");
+    refreshContent();
+}
+
+/**
+ * Called every 30 minutes, fetches new articles and displays them
+ */
+function refreshContent() {
+    console.log("Content wiping");
+    fetch("../php/run.php",{
+        method : 'POST',
+        body : 'initial=true',
+        headers : {
+            "Content-Type" : "application/x-www-form-urlencoded"
+        }
+    }).then(function(response) {
+        parseResponse(response);
+    });
+    setTimeout('callback()', (1 * 60 * 1000));
+}
+
+/**
+ * Builds the category string for the POST request according the checked boxes
+ * @returns {string} the 'cat=' string
+ */
+function getChecked(){
+    let catStr = "cat=";
+
+    let checkedCert = document.querySelector('#cat1');
+    let checkedRisks = document.querySelector('#cat2');
+    let checkedNews = document.querySelector('#cat3');
+    let checkedFrench = document.querySelector('#cat4');
+
+    if(checkedCert.checked === true){
+        if(catStr.length > 4){
+            catStr += ",cert";
+        }else {
+            catStr += "cert";
+        }
+    }
+
+    if(checkedRisks.checked === true){
+        if(catStr.length > 4){
+            catStr += ",risks";
+        }else {
+            catStr += "risks";
+        }
+    }
+
+    if(checkedNews.checked === true){
+        if(catStr.length > 4){
+            catStr += ",news";
+        }else {
+            catStr += "news";
+        }
+
+    }
+
+    if(checkedFrench.checked === true){
+        if(catStr.length > 4){
+            catStr += ",french";
+        }else{
+            catStr += "french";
+        }
+    }
+
+    return catStr;
+}
+
 
 /**
  * First looks up if the media query is met, then
@@ -227,6 +322,6 @@ function topFunction() {
     hideToast();
 }
 
-//TODO: animer une popup (style Twitter), qui fait un lien vers le haut de page, visible uniquemt en cas de nouvel
-//      article qui ne soit pas dans la vue du user
-//TODO: fetch des articles vers le bas: Envoi d'un id vers back-end -> Stocker le plus petit et le plus gd id
+//TODO: animer une popup, visible uniquemt en cas de nouvel article qui ne soit pas dans la vue du user
+//TODO: fetch des articles vers le bas: Envoi d'un id vers back-end -> Stocker le plus petit
+//      et le plus gd id

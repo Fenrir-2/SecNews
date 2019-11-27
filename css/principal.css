@@ -63,9 +63,7 @@ h1
 {
     width: 40px;
     height: 40px;
-   /* position: relative;*/
     display: inline-block;
-    vertical-align: center;
     margin-left: 7px;
 
 }
@@ -322,7 +320,6 @@ footer
     }
 }
 
-/*TODO: Add logo on width < 900*/
 li
 {
     list-style-type: none;
