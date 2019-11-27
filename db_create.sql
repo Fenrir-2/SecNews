@@ -27,6 +27,6 @@ CREATE TABLE ARTICLES (
         FOREIGN KEY (id_subcat) REFERENCES CATEGORIES(Id)
         ON UPDATE RESTRICT);
 -- Don't forget to replace 'password' with a real password
-GRANT SELECT, INSERT, UPDATE, DELETE ON SecNews.* TO 'phpClient'@'localhost' IDENTIFIED BY password;
-GRANT SELECT ON SecNews.* TO 'frontFetcher'@'localhost' IDENTIFIED BY password;
+GRANT SELECT, INSERT, UPDATE, DELETE ON SecNews.* TO phpClient@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT ON SecNews.* TO frontFetcher@'localhost' IDENTIFIED BY 'password';
 FLUSH PRIVILEGES;
