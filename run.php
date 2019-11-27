@@ -1,14 +1,14 @@
 <?php
 require 'feed_reader.php';
 
-#le comportement est ok?
 
 #Main loop used to periodically fetch articles
 while (TRUE) {
     push_articles(fetch_all_feeds());
     sleep(30 * 60 * 60);
+    #Initial represents the initial fetch, should it be true, we load the article like it never have been queried and reset everything
+    # So we fetch 10 articles, else the arg is simply ignored
 
-    #initial = true  --> si true on fetch les 10 derniers articles sinon on ignore cet arg
     if ($_POST["initial"]) {
         $tmp = fetch_articles();
 
@@ -30,9 +30,9 @@ while (TRUE) {
         unset($first_articles);
     } 
     else {
-
-        #cat = "string",string,string,string,string --> trie les articles à envoyer par catégories (pas les sous cat) 
-        #renvoie les catégories selectionnées, par défaut  toutes
+	
+	    #param cat, takes five  args, five strings, allows sorting articles by categories to send only a few categories to the user.
+	    #does not take in account subcategories, by default everything is set
         if ($_POST["cat"]) {
             $cat_names = explode(",", $_POST["cat"]);
 
@@ -45,7 +45,7 @@ while (TRUE) {
 
             usort($articles,"compare");
 
-            #fetch = ID --> on fetch 10 articles à partir de cet ID d'un pdv descendant
+            #fetch = ID --> we fetch 10 more articles, going backward in the DB
             if($_POST["fetch"]){
                 foreach($articles as $article){
                     if($article["Id"]===$_POST["fetch"]){$key = key($article);}
@@ -61,9 +61,7 @@ while (TRUE) {
             unset($articles);
             unset($cat_names);
         }
-
-        #souscat = "strings","string","string", --> comme pour cat mais par défaut on ne peut pas séléctionner aucune cat, 
-        #donc si none on ne trie pas par souscat on envoie tout
+	#subcat works like categories (cat) but by default nothing is set, since we don't sort via subcategories, so none by default.
         elseif ($_POST["souscat"]) {
             $subcat_names = explode(",", $_POST["souscat"]);
 
@@ -76,7 +74,7 @@ while (TRUE) {
 
             usort($articles,"compare");
 
-            #fetch = ID --> on fetch 10 articles à partir de cet ID d'un pdv descendant
+            
             if($_POST["fetch"]){
                 foreach($articles as $article){
                     if($article["Id"]===$_POST["fetch"]){$key = key($article);}

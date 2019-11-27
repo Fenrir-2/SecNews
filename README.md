@@ -6,7 +6,7 @@ A small, scalable IT-Sec threat intel web application
 
 > A cyber security news platform designed to be displayed on multiple screens in a school entrance
 > also providing a web facing service on which users can subscribe to one or more categories
-
+> The mysql version was 10.3.18, a more up to date version existed at the creation, though not in the base repositories. Regarding debian policies, we stayed with debian's repositories, it being a safe approach
 # Roadmap
 
 ## Front End
