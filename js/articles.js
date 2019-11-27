@@ -66,6 +66,7 @@ function createArticle(title, content, picture="", category, link, id, showAsNew
 
     content.split("\n").forEach(function (line) {
         line = line.trim();
+        line = line.replace(/<[^>]*>?/gm, '').replace(/\\/, "");;
         if(line){
             articleText.appendChild(document.createTextNode(line));
             articleText.appendChild(document.createElement("br"));
@@ -184,12 +185,35 @@ function getPicByCateg(category) {
     return "#";
 }
 
+function parseCateg(id) {
+    if(isNaN(id) || id < 1 || id > 10){
+        console.log("Bad param for parseCateg");
+    }
+
+    if(parseInt(id) === 1){
+        return "News"
+    }else if(parseInt(id) === 4 || parseInt(id) === 9){
+        return "Risks"
+    }else if(parseInt(id) === 3){
+        return "French Community"
+    }else{
+        return "CERT"
+    }
+}
 /**
  * Analyzes a fetch request response and creates the according articles
  * @param response The response to analyze
  */
 function parseResponse(response){
+    //Wiping content
+    let list = document.getElementById("article_list");
+    while (list.firstChild) {
+        list.firstChild.remove();
+    }
     //TODO: Wipe all content, parse response, create the articles with showAsNew = false
+    response.forEach(function (article) {
+        addArticleBottom(createArticle(article.Title, article.content, null, parseCateg(article.id_cat), article.link, article.Id, false));
+    })
 }
 
 //TODO: move inital load of articles here instead of refreshContent
@@ -199,11 +223,6 @@ function parseResponse(response){
  */
 window.onload = function () {
     refreshContent();
-    let lorem = "Lorem Ipsum";
-    addArticleTop(createArticle("Article 4", lorem, null, "French Community", "http://www.google.fr", 4, false));
-    addArticleTop(createArticle("Article 3", lorem, null, "News", "http://www.google.fr", 3, false));
-    addArticleTop(createArticle("Article 2", lorem, null, "CERT", "http://www.google.fr", 2, false));
-    addArticleTop(createArticle("Article 1", lorem, null, "Risks", "http://www.google.fr", 1, false));
 };
 
 /**
@@ -226,10 +245,11 @@ function refreshContent() {
         headers : {
             "Content-Type" : "application/x-www-form-urlencoded"
         }
-    }).then(function(response) {
-        parseResponse(response);
-    });
-    setTimeout('callback()', (1 * 60 * 1000));
+    }).then( response => response.json()).then( responseJSON => parseResponse(responseJSON));
+    fetch("../js/test.json")
+        .then( response => response.json() )
+        .then( text => parseResponse(text) );
+    setTimeout('callback()', (1 * 5 * 1000));
 }
 
 /**
@@ -266,7 +286,6 @@ function getChecked(){
         }else {
             catStr += "news";
         }
-
     }
 
     if(checkedFrench.checked === true){
