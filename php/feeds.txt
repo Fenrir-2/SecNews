@@ -1,0 +1,8 @@
+https://feeds.feedburner.com/TheHackersNews?format=xml,TheHackersNews
+https://blog.yeswehack.com/feed/,Yes We Hack
+https://www.cert.ssi.gouv.fr/alerte/feed/,CERT-FR
+https://fumik0.com/feed/,Fumik0
+https://security-soup.net/feed/,Security Soup
+https://www.nolimitsecu.fr/feed/podcast/,No Limit Secu
+https://www.zataz.com/rss/zataz-news.rss,Zataz
+https://cyberguerre.numerama.com/feed/,Cyberguerre (Numerama)
