@@ -17,7 +17,6 @@ function read_rss($url){
     $result = [];
     #Loop taking each item from the channel and parsing the fields within it
     foreach($rss->channel->item as $item) {
-        // if(is_null($item->pubDate)){echo "Date vide \n";}
         $datetime = date_create($item->pubDate);
         $date = $datetime->getTimestamp();
         $title = utf8_decode($item->title);
@@ -94,7 +93,6 @@ function push_articles($feeds) {
     #TODO call category sorting to sort articles according to the categories
     # then push it using insert_category from go_db.php
     $sorted = category_sorting($feeds);
-#    echo "sorted_done \n";
 
     foreach($sorted as $list){
         foreach($list as $article){
@@ -103,7 +101,6 @@ function push_articles($feeds) {
     }
     foreach($sorted as $feed) {
         insert_articles($feed);
-#	echo "insertion \n";
     }
 }
 

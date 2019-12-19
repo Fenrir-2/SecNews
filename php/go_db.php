@@ -6,9 +6,9 @@ function db_connect($user = 'phpClient',$path = '.pwd'){
 
     $client = new mysqli('localhost',$user,trim(file_get_contents($path)),'SecNews');
     if($client->connect_errno) {
-        echo "Connection failed.";
-        echo "Errno: " . $mysqli->connect_errno . "\n";
-        echo "Error: " . $mysqli->connect_error . "\n";
+       # echo "Connection failed.";
+       # echo "Errno: " . $mysqli->connect_errno . "\n";
+       # echo "Error: " . $mysqli->connect_error . "\n";
         return NULL;
     }
     else {
@@ -27,7 +27,6 @@ function query_wordlists() {
         return $categories;
     }
     else {
-        echo "Unable to fetch categories.";
     }
 }
 
@@ -85,7 +84,6 @@ function insert_articles($articles) {
     $date = NULL;
     $content = NULL;
     $link = NULL;
-    // $id_site = NULL;
     $id_site = key($articles);
     $id_cat = NULL;
     $id_subcat = NULL;
@@ -94,25 +92,20 @@ function insert_articles($articles) {
     $prepared->bind_param("sissiii",$title,$date,$content,$link,$id_site,$id_cat,$id_subcat);
    foreach($articles as $list){
     foreach($list as $sample) {
-#	echo "\n\n\n SAMPLE \n\n\n";
-#        print_r($sample);
 
         $title = $sample["title"];
         $date = $sample["pubDate"];
         $content = $sample["desc"];
         $link = $sample["link"];
-        // $id_site = key($articles);
         $id_cat = $sample["id_cat"];
         $id_subcat = $sample["id_subcat"];
 	if (is_null($date)) {time();}
 	if (is_null($id_cat)){$id_cat = 1;}
 	if (is_null($id_subcat)){$id_subcat = 1;}
-	if(is_null($title) or is_null($date) or is_null($content) or is_null($link) or is_null($id_cat) or is_null($id_subcat)){ echo "one or more is null";
+	if(is_null($title) or is_null($date) or is_null($content) or is_null($link) or is_null($id_cat) or is_null($id_subcat)){ 
 	}
 	else{
-	#	print_r($prepared);
 		$prepared->execute();
-	#	echo $title;
     }
     }
    }
@@ -125,7 +118,6 @@ function load_feeds() {
     $client = db_connect();
     $result = $client->query("SELECT Id,url FROM SITES;");
     $client->close();
-    // print_r($result);
     return $result;
 }
 
